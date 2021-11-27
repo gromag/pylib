@@ -1,9 +1,10 @@
 from src.search.search import depth_first_trasverse
 from src.search.graph_path_builder import GraphPathBuilder
 from tests.fixtures import *
+from pandas import DataFrame
 
 
-def test_depth_first_trasverse():
+def test_depth_first_trasverse_with_tree_structure():
     # arrange
     root = ExampleNode(0)
     root.add_neighbor(ExampleNode(1))
@@ -29,6 +30,24 @@ def test_depth_first_trasverse():
 
     # act
     depth_first_trasverse(graph_path_builder.transverse, graph_path_builder.visit, root.value)
+
+    # assert
+    assert [0, 2] in graph_path_builder.graph_paths
+    assert [0, 3] in graph_path_builder.graph_paths
+    assert [0, 1, 5] in graph_path_builder.graph_paths
+    assert [0, 1, 4, 6] in graph_path_builder.graph_paths
+    assert [0, 1, 4, 7] in graph_path_builder.graph_paths
+
+
+def test_depth_first_trasverse_with_dataframe():
+    # arrange
+    PARENT = "parent"
+    CHILD = "child"
+    df = DataFrame([[0,1],[0,2],[0,3],[1,4],[1,5],[4,6],[4,7]], columns=[PARENT, CHILD])
+    graph_path_builder = GrapthPathBuilderForExampleDataframe(df, PARENT, CHILD)
+
+    # act
+    depth_first_trasverse(graph_path_builder.transverse, graph_path_builder.visit, 0)
 
     # assert
     assert [0, 2] in graph_path_builder.graph_paths

@@ -1,7 +1,8 @@
 
 def depth_first_trasverse(transverseToNextNodesFn, visitFn, start):
     """
-    Depth first trasverse, can be used to search or traverse a graph.
+    Depth first trasverse, can be used to search or traverse a graph
+    based on visitFn implementation.
     """
     stack = [start]
     while stack:
