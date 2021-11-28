@@ -8,14 +8,12 @@ class GraphPathBuilder(ABC):
         """
         self.graph_paths = []
 
-    # filter list by value
     def _filter_list_by_value(self, list, value):
         """
         Filter list by value
         """
         return [item for item in list if item[-1] == value]
 
-    # remove items from list by value
     def _remove_items_from_list_by_value(self, list, value):
         """
         Remove items from list by value
